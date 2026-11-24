@@ -1,0 +1,379 @@
+% Curriculum Vitae -- Tae Soo Kim
+% Build with XeLaTeX (e.g. `tectonic cv.tex`).
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1.5cm,bottom=52.02pt,includefoot,footskip=20.5pt]{geometry}
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[hidelinks]{hyperref}
+
+% ---------------------------------------------------------------- colors
+\colorlet{ink}{black!90}
+\colorlet{muted}{black!60}
+\colorlet{accent}{MidnightBlue}
+
+% ---------------------------------------------------------------- page
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedbottom
+\raggedright
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\color{ink}Page \thepage\ of \pageref*{LastPage}}
+\AtBeginDocument{\color{ink}}
+
+% ---------------------------------------------------------------- sections
+\titleformat{\section}{\Large\scshape\color{accent}}{}{0pt}{}[{\titlerule}]
+\titlespacing*{\section}{0pt}{16.5pt}{7.4pt}
+
+% ---------------------------------------------------------------- lengths
+\newlength{\entryindent}\setlength{\entryindent}{13.94pt}
+\newlength{\itemindentx}\setlength{\itemindentx}{37.94pt}
+
+% ---------------------------------------------------------------- entries
+% \entry{Organization}{Location}{Role}{Dates}
+\makeatletter
+\newcommand{\entry}[4]{%
+  \par\if@nobreak\vskip 2.3pt\else\vskip 8.3pt\fi
+  {\leftskip=\entryindent\rightskip=1.87pt
+   \textbf{#1}\hfill #2\par\nobreak\vskip 1.5pt
+   {\small #3\hfill #4\par}}\nobreak}
+\makeatother
+
+% Dash list under an entry. Plain \item is a muted detail line;
+% \head{Bold title}[trailing text] is a dark sub-heading line.
+\newlist{cvitems}{itemize}{1}
+\setlist[cvitems]{label={--}, leftmargin=\itemindentx, labelsep=5.45pt,
+  topsep=4.8pt, partopsep=0pt, itemsep=4pt, parsep=0pt,
+  before=\small\color{muted}, after=\vspace{-4.8pt}}
+\NewDocumentCommand{\head}{m o}{%
+  \item[{\normalsize\color{ink}\bfseries --}]%
+  {\color{ink}\textbf{#1}\IfValueT{#2}{ #2}}}
+
+% Bullet lists (teaching, skills, service)
+% Same list in dark text, for education details
+\newenvironment{cvitemsdark}
+  {\begin{cvitems}[label={\bfseries --}, before=\small\color{ink}, topsep=4.1pt, after=\vspace{-3.8pt}]}
+  {\end{cvitems}}
+
+\newlist{cvbullets}{itemize}{1}
+\setlist[cvbullets]{label=\textbullet, leftmargin=\entryindent, labelsep=5.4pt,
+  topsep=2pt, partopsep=0pt, itemsep=4.4pt, parsep=0pt, before=\small}
+% \dated{first line}{date}{second line}
+\newcommand{\dated}[3]{\item #1\hfill #2\hspace*{3.3pt}\null\\[1.5pt]#3}
+
+% ---------------------------------------------------------------- publications
+\newcommand{\me}{\textbf{T.S.~KIM}}
+% Keep each entry on one page.
+\makeatletter
+\newcommand{\pubsetup}{\clubpenalty=10000\@clubpenalty=10000\widowpenalty=10000}
+\makeatother
+\newlist{publications}{enumerate}{1}
+\setlist[publications]{label={[\arabic*]}, ref={[\arabic*]}, align=right,
+  leftmargin=27.9pt, labelwidth=17pt, labelsep=10.9pt,
+  topsep=2.5pt, partopsep=0pt, itemsep=4.5pt, parsep=0pt, before={\frenchspacing\pubsetup}}
+% \pub{key}{authors}{title}{venue}{year}
+\newcommand{\pub}[5]{\item\label{pub:#1}#2, ``#3'', in \textit{#4}, #5.}
+\newcommand{\pubref}[1]{\ref{pub:#1}}
+
+% Bold label followed by a fixed gap (skills, languages)
+\newcommand{\lbl}[1]{\textbf{#1}\hspace{9.4pt}}
+
+\newcommand{\TM}{\textsuperscript{TM}}
+
+\begin{document}
+
+% ================================================================ header
+\raisebox{-17.4pt}[0pt][0pt]{\Huge\color{accent}Tae Soo Kim}%
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \raggedleft
+  \href{mailto:taesoo.kim@lunit.io}{taesoo.kim@lunit.io}\\
+  \href{https://taesoo-kim.github.io/}{https://taesoo-kim.github.io}\\
+  \href{https://github.com/TaeSoo-Kim/}{github.com/TaeSoo-Kim}\\
+  Last updated: November, 2026
+\end{minipage}\hspace{22.7pt}
+
+% ================================================================ objective
+\section*{Objective}
+I am passionate about building AI systems that can generalize to challenging real world problems. Currently,
+I am an applied research scientist and a team lead at Lunit where I am part of a group whose mission is to
+conquer cancer through artificial intelligence. My research has been applied to a wide range of applications
+including video surveillance, surgical data science, medical image analysis and healthcare. I thrive under a
+team environment, have successfully led and managed high impact technical projects.
+
+% ================================================================ education
+\section*{Education}
+
+\entry{Johns Hopkins University}{Baltimore, MD}
+      {Ph.D. in Computer Science, Advisor: Dr. Gregory D. Hager}{2015--2021}
+\begin{cvitemsdark}
+  \item Thesis: ``Model-driven and Data-driven Methods for Recognizing Compositional Interactions from Videos''
+\end{cvitemsdark}
+
+\entry{Johns Hopkins University}{Baltimore, MD}
+      {M.S. in Computer Science, Advisor: Dr. Russell Taylor and Dr. Austin Reiter}{2014--2015}
+\begin{cvitemsdark}
+  \item Thesis: ``3D Reconstruction System using a Flexible Endoscope and a Laser''
+\end{cvitemsdark}
+
+\entry{Johns Hopkins University}{Baltimore, MD}
+      {B.S.E in Computer Science}{2010--2014}
+\begin{cvitemsdark}
+  \item Graduated with general honors
+  \item Minor: Robotics
+\end{cvitemsdark}
+
+% ================================================================ professional
+\section*{Professional Experience}
+
+\entry{Lunit}{Seoul, Korea}
+      {Staff Applied Research Scientist, Team Lead}{2021.06 - Current}
+\begin{cvitems}
+  \head{Staff Applied Research Scientist, AI Innovation Team Lead}[(2025.04 - Current)]
+  \item The AI Innovation Team of the Technology Innovation Group is responsible for identifying and building Lunit's
+        next generation of products by strategically securing necessary AI innovations.
+  \item As a team lead, I contribute by leading a team of 10+ researchers and engineers to build multi-modal
+        foundation models by securing funding opportunities by winning grants, scoping the product by meeting
+        customers and overseeing the technical architecture of our services.
+  \item I led the Lunit Consortium (6 academic labs, 8 industry partners, 9 hospitals) for the national
+        `AI-Specialized Foundation Model' project, funded by the Korea Ministry of Science and ICT.
+        \href{https://medigatenews.com/news/2040726640}{[See news article]}
+
+  \head{Senior Applied Research Scientist, Model Team Lead}[(2022.09 - 2025.03)]
+  \item The AI Model Team develops AI models for all product line ups in the Cancer Screening Department of Lunit
+        including Lunit INSIGHT CXR\TM, Lunit INSIGHT MMG\TM\ and Lunit INSIGHT DBT\TM.
+  \item As a team lead, I contribute by managing the team of 10+ researchers to deliver best-in-class AI models for
+        productization by setting up scalable processes for collaboration, data annotation, training, inference and
+        evaluation.
+  \item We build evidence for AI algorithms for future Lunit products by executing forward looking research projects
+        that directly improve our products and publishing scientific papers.
+        (See publications: \pubref{spec-cxr}--\pubref{annotation-cost})
+
+  \head{Senior Research Scientist, Chest X-ray Team Lead}[(2021.06 - 2022.09)]
+  \item The Chest X-ray Team of the Cancer Screening Group is in charge of developing core deep learning algorithms
+        used in the Lunit INSIGHT CXR\TM\ product line.
+  \item As a research scientist and team lead, I contribute to the product by optimizing the vision model for lesion
+        detection, adding new detectable lesions to the model, releasing AI engines and managing the team.
+\end{cvitems}
+
+\entry{Siemens Healthineers (Siemens Corporate Research)}{Princeton, NJ}
+      {Graduate Research Intern: hosted by Dr. Shaohua Kevin Zhou}{Summer 2016}
+\begin{cvitems}
+  \head{Bone Removal Project}
+  \item The aim of the Bone Removal project was to develop deep learning algorithms to remove voxels representing
+        bones in a computed tomography angiography volume.
+  \item As an integrated software for immediate deployment in products, the bone removal software was required to be
+        highly precise, efficient and fast.
+  \item As a graduate research intern, I developed a novel 3D convolutional neural network architecture with
+        decomposed convolutions for bone removal.
+  \item My approach increased accuracy and precision while decreasing memory usage and inference time. The
+        developed bone removal model was successfully deployed to commercial products.
+        (See patents: \pubref{patent-segmentation}, \pubref{patent-bone-removal}).
+\end{cvitems}
+
+\entry{Hyundai Heavy Industries, Medical Systems Department}{Seoul, Korea}
+      {Undergraduate Research Intern}{Summer 2012}
+\begin{cvitems}
+  \head{Medical Robotics Project}
+  \item The goal of the project was to build a minimally invasive surgical robot to remove malignant masses from breast
+        cancer patients.
+  \item As part of the computer vision team, I developed an algorithm for recognizing malignant/benign masses and
+        cysts from breast ultrasound images. My main task involved data curation and implementation of state of the
+        art machine learning algorithms.
+\end{cvitems}
+
+% ================================================================ academic
+\section*{Academic Experience}
+
+\entry{Johns Hopkins University}{Baltimore, MD}
+      {Graduate Research Assistant}{2018-2021}
+\begin{cvitems}
+  \head{The Deep Intermodal Video Analytics (DIVA) project funded by IARPA}
+  \item The DIVA program is a US government funded multi-institutional research program that aims to develop a
+        robust automated activity detection system for multi-camera video surveillance applications.
+  \item As a senior Ph.D student of the JHU DIVA team, I assumed a leadership role in the team's research,
+        development and deployment of system deliverables to the program.
+  \item I developed a zero-shot action recognition system that requires no labeled training examples of the test
+        activities. (See publications: \pubref{daszl}, \pubref{safer})
+  \item I developed a simulation software for synthesizing human activities from economic motion capture systems. We
+        use the generated dataset to train activity recognition systems.
+        (See publications: \pubref{synthetic-vehicles}, \pubref{synthesizing-attributes}, \pubref{unrealcv})
+\end{cvitems}
+
+\entry{Johns Hopkins University}{Baltimore, MD}
+      {Graduate Research Assistant}{2016-2018}
+\begin{cvitems}
+  \head{Language of Surgery project funded by the Johns Hopkins Wilmer Eye Institute}
+  \item In collaboration with the surgeons from the Johns Hopkins Wilmer Eye Institute, the project aimed to build
+        intelligent tools to automatically analyze videos of cataract surgery.
+  \item The goal is to build an intelligent system that provides actionable feedback to trainees by reviewing their
+        surgical performance from video recordings.
+  \item I showed that videos of cataract surgery can be annotated accurately at scale using crowd-sourced workers. (See
+        publication: \pubref{crowdsourcing})
+  \item As a machine learning and computer vision lead in the team, I developed deep learning algorithms to
+        automatically recognize surgical phases from videos. (See publications: \pubref{cataract-phases})
+  \item I developed a deep learning model that provides objective assessment of surgical technical skill from cataract
+        surgery videos. (See publication: \pubref{capsulorhexis})
+\end{cvitems}
+
+\entry{Johns Hopkins University}{Baltimore, MD}
+      {Masters Thesis Research}{2014-2015}
+\begin{cvitems}
+  \head{System for stereo reconstruction from monoscopic endoscope images}
+  \item In collaboration with the department of head and neck surgery of the Johns Hopkins hospital, the project aimed
+        to develop an economic solution for an endoscope capable of accurate 3D reconstruction of organs.
+  \item I developed an active stereo vision system using a pattern generating laser inserted into a working channel of an
+        endoscope.
+  \item With a solution costing under a 100 dollars added to the endoscope, I developed a system capable of accurate
+        3D reconstruction using monoscopic endoscope images. (See patent: \pubref{patent-endoscope} )
+\end{cvitems}
+
+% ================================================================ teaching
+\section*{Teaching}
+\begin{cvbullets}
+  \dated{\textbf{Head Teaching Assistant} at Johns Hopkins University}{Fall 2015,2016}
+        {\textbf{\textit{Computer vision}} \textit{(Dr. Austin Reiter)}}
+  \dated{\textbf{Head Teaching Assistant} at Johns Hopkins University}{Spring 2016}
+        {\textbf{\textit{Augmented Reality}} \textit{(Dr. Nasir Navab)}}
+  \dated{\textbf{Head Teaching Assistant} at Johns Hopkins University}{Summer 2015}
+        {\textbf{\textit{Intro. Programming}} \textit{(Dr. Sara More)}}
+  \dated{\textbf{Head Teaching Assistant} at Johns Hopkins University}{Spring 2015}
+        {\textbf{\textit{Data Structures}} \textit{(Dr. Sara More)}}
+\end{cvbullets}
+
+% ================================================================ skills / languages
+\begin{minipage}[t]{0.49\textwidth}
+  \section*{Skills}
+  \begin{cvbullets}[itemsep=3.4pt]
+    \raggedright
+    \item \lbl{Machine Learning/Computer Vision:}Python,
+          Pytorch, Keras, Tensorflow, Opencv, Matlab, Docker
+    \item \lbl{Simulation:}UnrealEngine, UnrealCV, Axis-Neuron,
+          ROS
+    \item \lbl{Other:}Html, Php, Javascript, Java, SQL,
+          Android-Studio, Confluence
+  \end{cvbullets}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \section*{Languages}
+  \begin{cvbullets}
+    \item \lbl{Korean:}Native
+    \item \lbl{English:}Bilingual
+  \end{cvbullets}
+\end{minipage}
+
+% ================================================================ service
+\vspace{3.5pt}
+\section*{Service}
+\begin{cvbullets}
+  \dated{\textbf{Organizer} of ICCV Multi-Modal Foundation Models for Cancer Detection and Prevention Workshop}{2025.10}
+        {\textit{As part of the organization team, I contributed by preparing the proposal, recruiting event speakers and overseeing the
+         program.}}
+  \dated{\textbf{Organizer} of MICCAI Tutorial on AI for Medical Image Analysis in Practice}{2022.09}
+        {\textit{As part of the organization team, I contributed by preparing the proposal, promoting the event and organizing the
+         tutorial event at MICCAI.}}
+  \dated{\textbf{President} of Korean Graduate Students Association at JHU}{2018--2019}
+        {\textit{As an elected leader of the Korean graduate student body, I served to provide constructive support, opportunities as
+         well as entertainment to members of the Korean community at JHU.}}
+  \dated{\textbf{Reviewer}}{2015--current}
+        {\textit{for CVPR, ICCV, ECCV, AAAI, MICCAI, IPCAI, TMI}}
+\end{cvbullets}
+
+% ================================================================ publications
+\clearpage
+\section*{Publications}
+\begin{publications}
+  \pub{deceptive-grounding}
+      {C.~Caruzzo, D.~Yoo, and \me}
+      {Deceptive grounding: Entity attribution failure in clinical retrieval-augmented generation}
+      {NeurIPS}{2026}
+  \pub{spec-cxr}
+      {J.~Lee, J.~Cho, J.~Kim, L.~Dillard, T.~van~Sonsbeek, A.~Setio, H.~Lee, D.~Yoo, and \me}
+      {SPEC-CXR: Advancing clinical safety through entity-level performance evaluation of chest X-ray report generation}
+      {MICCAI}{2025}
+  \pub{report-customization}
+      {T.~Sonsbeek, A.~Setio, J.~Lee, J.~Cho, J.~Kim, H.~Lee, G.~Nam, L.~Dillard, and \me}
+      {Beyond one size fits all: Customization of radiology report generation methods}
+      {MICCAI-W}{2025}
+  \pub{selectivekd}
+      {L.~Dillard, H.~Lee, W.~Lee, \me, A.~Diba, and T.~Kooi}
+      {SelectiveKD: A semi-supervised framework for cancer detection in DBT through knowledge distillation and pseudo-labeling}
+      {MICCAI-W}{2024}
+  \pub{rld}
+      {J.~Song, \me, J.~Kim, G.~Nam, T.~Kooi, and J.~Choo}
+      {Is user feedback always informative? Retrieval latent defending for semi-supervised domain adaptation without source data}
+      {ECCV}{2024}
+  \pub{prior-images}
+      {H.~Lee, J.~Kim, E.~Park, M.~Kim, \me, and T.~Kooi}
+      {Enhancing breast cancer risk prediction by incorporating prior images}
+      {MICCAI}{2023}
+  \pub{oooe}
+      {G.~Nam, \me, S.~Lee, and T.~Kooi}
+      {OOOE: Only-one-object-exists assumption to find very small objects in chest radiographs}
+      {MICCAI-W}{2022}
+  \pub{annotation-cost}
+      {\me, G.~Jang, S.~Lee, and T.~Kooi}
+      {Did you get what you paid for? Rethinking annotation cost of deep learning based computer aided detection in chest radiographs}
+      {MICCAI}{2022}
+  \pub{synthetic-vehicles}
+      {\me, B.~Shim, M.~Peven, W.~Qiu, A.~Yuille, and G.~D.~Hager}
+      {Learning from synthetic vehicles}
+      {WACV-W Real World Surveillance}{2022}
+  \pub{motion-guided-attention}
+      {\me, J.~Jones, and G.~D.~Hager}
+      {Motion guided attention fusion to recognize interactions from videos}
+      {ICCV}{2021}
+  \pub{daszl}
+      {\me, J.~Jones, M.~Peven, Z.~Xiao, J.~Bai, Y.~Zhang, W.~Qiu, A.~Yuille, and G.~D.~Hager}
+      {DASZL: Dynamic action signatures for zero-shot learning}
+      {AAAI}{2021}
+  \pub{synthesizing-attributes}
+      {\me, M.~Peven, W.~Qiu, A.~Yuille, and G.~D.~Hager}
+      {Synthesizing attributes with Unreal Engine for fine-grained activity analysis}
+      {WACV-W}{2019}
+  \pub{capsulorhexis}
+      {\me, M.~O'Brien, S.~Zafar, A.~Malpani, G.~D.~Hager, S.~Sikder, and S.~Vedula}
+      {Objective assessment of intraoperative technical skill in capsulorhexis using videos of cataract surgery}
+      {IJCARS}{2019}
+  \pub{safer}
+      {\me, Y.~Zhang, Z.~Xiao, M.~Peven, W.~Qiu, J.~Bai, A.~Yuille, and G.~D.~Hager}
+      {SAFER: Fine-grained activity detection by compositional hypothesis testing}
+      {arXiv}{2019}
+  \pub{cataract-phases}
+      {\me*, F.~Yu*, G.~S.~Croso*, Z.~Song, F.~Parker, G.~D.~Hager, A.~Reiter, S.~Vedula, H.~Ali, and S.~Sikder}
+      {Assessment of automated identification of phases in videos of cataract surgery using machine learning and deep learning techniques}
+      {JAMA Network Open}{2019}
+  \pub{crowdsourcing}
+      {\me, A.~Malpani, A.~Reiter, G.~D.~Hager, S.~Sikder, and S.~Vedula}
+      {Crowdsourcing annotation of surgical instruments in videos of cataract surgery}
+      {MICCAI-W}{2018}
+  \pub{unrealcv}
+      {W.~Qiu, F.~Zhong, Y.~Zhang, S.~Qiao, Z.~Xiao, \me, Y.~Wang, and A.~Yuille}
+      {UnrealCV: Virtual worlds for computer vision}
+      {ACM-MM}{2017}
+  \pub{tcn}
+      {\me\ and A.~Reiter}
+      {Interpretable 3D human action analysis with temporal convolutional networks}
+      {CVPR-W}{2017}
+  \pub{patent-segmentation}
+      {S.~K.~Zhou, M.~Chen, H.~Ding, B.~Georgescu, M.~A.~Gulsun, \me, A.~P.~Kiraly, X.~Lu, J.-h.~Park, P.~Sharma, S.~Sun, D.~Xu, Z.~Xi, and Y.~Zheng}
+      {Method and system for artificial intelligence based medical image segmentation}
+      {US Patent Application Number 62/414,913}{2017}
+  \pub{patent-bone-removal}
+      {M.~Chen, \me, J.~Kretschmer, S.~Seifert, S.~K.~Zhou, M.~Schobinger, D.~Liu, Z.~Xu, S.~Grbic, and H.~Zhang}
+      {Deep learning based bone removal in computed tomography angiography}
+      {US Patent 10,852,907}{2019}
+  \pub{patent-endoscope}
+      {K.~C.~Olds, \me, R.~H.~Taylor, and A.~Reiter}
+      {System for stereo reconstruction from monoscopic endoscope images}
+      {US Patent 10,368,720}{2019}
+\end{publications}
+
+\end{document}
